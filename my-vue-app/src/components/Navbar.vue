@@ -1,7 +1,7 @@
 <template>
     <nav :class="[`navbar-${theme}`, `bg-${theme}`, 'navbar', 'navbar-expand-lg']">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">My Vue</a>
+            <a class="navbar-brand" href="#">Tutorial</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-o">
                 <li v-for="(page, index) in pages" class="nav-item" :key="index">
                     <NavbarLink
