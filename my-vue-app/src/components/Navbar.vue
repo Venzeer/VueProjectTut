@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Tutorial</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-o">
-                <li v-for="(page, index) in pages" class="nav-item" :key="index">
+                <li v-for="(page, index) in publishedPages" class="nav-item" :key="index">
                     <NavbarLink
                       :page="page"
                       :isActive="activePage == index"
@@ -29,6 +29,9 @@ export default {
     components: {
         NavbarLink
     },
+    created() {
+        this.getTheme();
+    },
     props: ['pages', 'activePage', 'navLinkClick'],
     computed: {
         getNextTheme() {
@@ -38,6 +41,9 @@ export default {
 
             return 'light'
         },
+        publishedPages() {
+            return this.pages.filter(pg => pg.published)
+        }
     },
     data() {
         return {
@@ -45,14 +51,24 @@ export default {
         };
     },
     methods: {
-        
         changeTheme() {
-            let theme = 'light'
+            let theme = 'light';
             if (this.theme == 'light') {
-                theme = 'dark'
+                theme = 'dark';
             }
 
-            this.theme = theme
+            this.theme = theme;
+            this.storeTheme();
+        },
+        storeTheme() {
+            localStorage.setItem('theme', this.theme);
+        },
+        getTheme() {
+            let theme = localStorage.getItem('theme');
+
+            if (theme) {
+                this.theme = theme;
+            }
         }
     }      
 }

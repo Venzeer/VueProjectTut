@@ -7,7 +7,17 @@
 
 <script>
 export default {
-    props: ['page']
+    props: {
+        page : {
+            types: Object,
+            default(rawProps) {
+                return {
+                    pageTitle: '',
+                    content: ''
+                }
+            }
+        }
+    }
 }
 </script>
 
