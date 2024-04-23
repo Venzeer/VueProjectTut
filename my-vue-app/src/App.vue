@@ -6,14 +6,18 @@
       >
   </navbar>
 
-  <PageViewer
+  <router-view>
+    
+  </router-view>
+
+  <!-- <PageViewer
       v-if="pages.length > 0"  
       :page="pages[activePage]">
   </PageViewer>
   
   <create-page
     @page-created="pageCreated">
-  </create-page>
+  </create-page> -->
 
 </template>
 
