@@ -3,14 +3,13 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Tutorial</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-o">
-                <li v-for="(page, index) in publishedPages" class="nav-item" :key="index">
-                    <NavbarLink
-                      :page="page"
-                      :isActive="activePage == index"
-                      @click.prevent="navLinkClick(index)">
-                    </NavbarLink>
-                    
-                </li>
+                <NavbarLink
+                    v-for="(page, index) in publishedPages" class="nav-item" :key="index"
+                    :page="page"
+                    :isActive="activePage == index"
+                    :index = "index"
+                    @activated="$emit('activated')">
+                </NavbarLink>
             </ul>
 
             <form class="d-flex" action="">
@@ -32,7 +31,7 @@ export default {
     created() {
         this.getTheme();
     },
-    props: ['pages', 'activePage', 'navLinkClick'],
+    props: ['pages', 'activePage'],
     computed: {
         getNextTheme() {
             if (this.theme == 'light') {
