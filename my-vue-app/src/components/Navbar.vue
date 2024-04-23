@@ -6,10 +6,18 @@
                 <NavbarLink
                     v-for="(page, index) in publishedPages" class="nav-item" :key="index"
                     :page="page"
-                    :isActive="activePage == index"
-                    :index = "index"
-                    @activated="$emit('activated')">
+                    :index = "index">
                 </NavbarLink>
+
+                <li>
+                    <router-link
+                        to="/pages/create"
+                        class="nav-link"
+                        aria-current="page"
+                        active-class="active">
+                            Create Page
+                    </router-link>
+                </li>
             </ul>
 
             <form class="d-flex" action="">
@@ -30,8 +38,9 @@ export default {
     },
     created() {
         this.getTheme();
+
+        this.pages = this.$pages.getAllPages();
     },
-    props: ['pages', 'activePage'],
     computed: {
         getNextTheme() {
             if (this.theme == 'light') {
@@ -46,7 +55,8 @@ export default {
     },
     data() {
         return {
-            theme: 'light'
+            theme: 'light',
+            data: []
         };
     },
     methods: {
